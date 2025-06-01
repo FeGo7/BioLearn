@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - BioLearn</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+    
+    .dark body {
+      background-color: #111827;
+      color: #f9fafb;
+    }
+    
+    .container {
+      max-width: 500px;
+      padding: 40px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .dark .container {
+      background-color: #1f2937;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .button {
+      display: inline-block;
+      background-color: #4f46e5;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    
+    .button:hover {
+      background-color: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📶</div>
+    <h1>Du bist offline</h1>
+    <p>Es scheint, dass du keine Internetverbindung hast. Bitte überprüfe deine Verbindung und versuche es erneut.</p>
+    <p>Wenn du BioLearn bereits genutzt hast, sollten die meisten Inhalte auch offline verfügbar sein.</p>
+    <a href="/" class="button">Erneut versuchen</a>
+  </div>
+  
+  <script>
+    // Prüfen, ob Dark Mode aktiviert ist
+    const userSettings = localStorage.getItem('userSettings');
+    if (userSettings) {
+      const settings = JSON.parse(userSettings);
+      if (settings.darkMode) {
+        document.documentElement.classList.add('dark');
+      }
+    }
+    
+    // Prüfen, ob wieder online
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>
